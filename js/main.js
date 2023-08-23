@@ -1,11 +1,11 @@
 function onInit() {
-    // Directly call the function to get test images and render the gallery
     const testImgs = getTestImgs();
     renderGallery(testImgs);
-
-    // Connect the text input's change event to the setLineTxt() function
     initTextInputListener();
 }
+   
+
+    
 
 function initTextInputListener() {
     document.querySelector('input[name="txt-mem"]').addEventListener('input', function(event) {
@@ -13,3 +13,11 @@ function initTextInputListener() {
         renderMeme(getMeme());
     });
 }
+
+var canvas = document.querySelector('#my-canvas');
+canvas.addEventListener('click', function(e) {
+    var rect = canvas.getBoundingClientRect(); 
+    var x = e.clientX - rect.left;
+    var y = e.clientY - rect.top;  
+    console.log('Canvas X:', x, 'Canvas Y:', y);
+});

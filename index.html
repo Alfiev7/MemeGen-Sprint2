@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Generator</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body onload="onInit()">
     <section class="main-gallery"></section>
 
     <section class="main-editor">
-        
-        
+
+
         <div class="canvas-box">
-            
+
             <canvas id="my-canvas" width="400" height="400"></canvas>
         </div>
         <input type="text" name="txt-mem" placeholder="Insert Text here!" onchange="handleTextInput(this.value)">
+        <input type="color" id="fontColor" value="#FFFFFF" onchange="changeFontColor(this.value)">
+        <button onclick="addLine()">Add Line</button>
+        <button onclick="onSwitchLineClicked()">Switch Line</button>
+
+        <button onclick="changeFontSize(5)">Bigger Font</button>
+        <button onclick="changeFontSize(-5)">Smaller Font</button>
         <a href="#" download="memegen.jpg" id="download-link" onclick="downloadCanvas(this)">Download your meme!</a>
 
 
@@ -35,4 +43,5 @@
     <script src="js/memeController.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>
