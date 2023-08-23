@@ -59,7 +59,7 @@
 
 .buttoninputbox {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); 
+    grid-template-columns: repeat(10, 1fr); 
     grid-template-rows: auto auto; 
     border-radius: 25px;
     border: 1px solid #F8F8F8;
@@ -67,6 +67,8 @@
     background-color: #fff;
     overflow: hidden;
     margin-left: 1.875rem;
+    align-items: center;
+    
     
      
 }
@@ -74,7 +76,7 @@
 .buttoninputbox input[type="text"] {
     border: 1px solid #F8F8F8;
     padding: 1.65rem;
-    grid-column: 1 / span 5; 
+    grid-column: 1 / span 10; 
     outline: none;
     
 }
@@ -104,3 +106,12 @@ color: white;
     bottom: 1rem;
     right: 1rem;
 }
+
+
+#font-family-select{
+margin-left: 0.8rem;
+    font-size: 0.8rem;
+    height: 22px;
+    border: 1px solid #F8F8F8
+}
+

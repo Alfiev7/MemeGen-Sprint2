@@ -3,8 +3,8 @@ var gMeme = {
     selectedImgId: null,
     selectedImgUrl: null,
     lines: [
-        { text: 'Text 1', size: 40, color: 'white', x: 200, y: 100 },  
-        { text: 'Text 2', size: 40, color: 'white', x: 200, y: 300 }
+        { text: 'Text 1', size: 40, font: 'Impact', color: 'white', x: 0, y: 100, align: 'left' },  
+        { text: 'Text 2', size: 40, font: 'Impact',color: 'white', x: 0, y: 300, align: 'left' }
     ],
     selectedLineIdx: 0
 };
@@ -28,9 +28,10 @@ function setImg(imgId) {
 }
 
 function addLine() {
-    const newLine = { text: 'New Text', size: 40, color: 'white', x: 200, y: gCanvas.height / 2 };
+    const newLine = { text: 'New Text', size: 40, font: 'Impact', color: 'white', x: 0, y: gCanvas.height / 2 };
     gMeme.lines.push(newLine);
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
+    renderMeme(getMeme());
 }
 
 function switchLine() {
@@ -42,3 +43,17 @@ function getSelectedLine() {
     return gMeme.lines[gMeme.selectedLineIdx];
 }
 
+function setTextAlignment(alignment) {
+    getSelectedLine().align = alignment;
+}
+
+function setFontFamily(fontFamily) {
+    getSelectedLine().font = fontFamily;
+}
+
+
+function deleteLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+ gMeme.selectedLineIdx--;
+    
+}

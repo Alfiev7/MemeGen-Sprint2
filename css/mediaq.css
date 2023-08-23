@@ -54,4 +54,8 @@
         position: static; 
         margin: 0 auto;  
     }
+
+    .buttoninputbox{
+        margin-left: 1px;
+    }
 }

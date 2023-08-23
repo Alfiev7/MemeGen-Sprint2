@@ -18,22 +18,32 @@ function renderMeme(meme) {
 
 
 function drawText(line) {
-    gCtx.fillStyle = line.color;
-    gCtx.font = `${line.size}px Arial`;
-    gCtx.fillText(line.text, line.x, line.y);
-    gCtx.strokeText(line.text, line.x, line.y);
+
+        gCtx.fillStyle = line.color;
+        gCtx.font = `${line.size}px ${line.font}`;
+        
+        let x = line.x;
+        if (line.align === 'center') {
+            x = gCanvas.width / 2 - gCtx.measureText(line.text).width / 2;
+        } else if (line.align === 'right') {
+            x = gCanvas.width - gCtx.measureText(line.text).width;
+        }
+        
+        gCtx.fillText(line.text, x, line.y);
+        gCtx.strokeText(line.text, x, line.y);
 
     const textWidth = gCtx.measureText(line.text).width;
-    const textHeight = line.size; // 
+    const textHeight = line.size; 
     line.boundingBox = {
-        x: line.x,
+        x: x,
         y: line.y - textHeight,
         width: textWidth,
         height: textHeight
     };
+
+
+
 }
-
-
 
 function handleTextInput(txt) {
     setLineTxt(txt);
@@ -65,21 +75,27 @@ function highlightSelectedLine() {
     const textHeight = 30; 
     const padding = 5; 
 
+    let x = line.x;
+    if (line.align === 'center') {
+        x = gCanvas.width / 2 - textWidth / 2;
+    } else if (line.align === 'right') {
+        x = gCanvas.width - textWidth;
+    }
+
     gCtx.beginPath();
     gCtx.rect(
-        line.x - padding,                
+        x - padding,                
         line.y - textHeight - padding,  
         textWidth + 2 * padding,        
         textHeight + 2 * padding        
     );
- 
+
     gCtx.strokeStyle = 'blue';
     gCtx.lineWidth = 1;
     gCtx.stroke();
-    
-
     gCtx.strokeStyle = 'black';
 }
+
 
 
 function onSwitchLineClicked() {
@@ -94,8 +110,12 @@ function updateTextInputWithValueOfSelectedLine() {
 }
 
 function handleCanvasClick(event) {
-    const clickX = event.offsetX;
-    const clickY = event.offsetY;
+    const rect = gCanvas.getBoundingClientRect();
+    const scaleX = gCanvas.width / rect.width;
+    const scaleY = gCanvas.height / rect.height;
+
+    const clickX = event.offsetX * scaleX;
+    const clickY = event.offsetY * scaleY;
 
     for (let i = 0; i < gMeme.lines.length; i++) {
         const line = gMeme.lines[i];
@@ -112,6 +132,7 @@ function handleCanvasClick(event) {
     }
 }
 
+
 function updateEditorForSelectedLine() {
     const line = getSelectedLine();
     const textInput = document.querySelector('input[name="txt-mem"]');
@@ -120,3 +141,18 @@ function updateEditorForSelectedLine() {
 }
 
 
+function alignText(alignment) {
+    setTextAlignment(alignment);
+    renderMeme(getMeme());
+}
+
+function changeFontFamily(fontFamily) {
+    setFontFamily(fontFamily);
+    renderMeme(getMeme());
+}
+
+
+function onDeleteLineClicked() {
+    deleteLine();
+    renderMeme(getMeme());
+}
