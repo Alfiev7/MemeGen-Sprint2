@@ -22,6 +22,15 @@ function drawText(line) {
     gCtx.font = `${line.size}px Arial`;
     gCtx.fillText(line.text, line.x, line.y);
     gCtx.strokeText(line.text, line.x, line.y);
+
+    const textWidth = gCtx.measureText(line.text).width;
+    const textHeight = line.size; // 
+    line.boundingBox = {
+        x: line.x,
+        y: line.y - textHeight,
+        width: textWidth,
+        height: textHeight
+    };
 }
 
 
@@ -83,3 +92,31 @@ function updateTextInputWithValueOfSelectedLine() {
     const selectedLineText = getSelectedLine().text;
     document.querySelector('input[name="txt-mem"]').value = selectedLineText;
 }
+
+function handleCanvasClick(event) {
+    const clickX = event.offsetX;
+    const clickY = event.offsetY;
+
+    for (let i = 0; i < gMeme.lines.length; i++) {
+        const line = gMeme.lines[i];
+        if (clickX >= line.boundingBox.x && 
+            clickX <= line.boundingBox.x + line.boundingBox.width && 
+            clickY >= line.boundingBox.y && 
+            clickY <= line.boundingBox.y + line.boundingBox.height) {
+            
+            gMeme.selectedLineIdx = i;
+            updateEditorForSelectedLine();
+            renderMeme(getMeme());
+            break;
+        }
+    }
+}
+
+function updateEditorForSelectedLine() {
+    const line = getSelectedLine();
+    const textInput = document.querySelector('input[name="txt-mem"]');
+    textInput.value = line.text;
+
+}
+
+

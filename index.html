@@ -6,18 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Generator</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body onload="onInit()">
-    <section class="main-gallery"></section>
+    
+    <div class="nav">
 
-    <section class="main-editor">
+<img class="logo" src="imgs/LOGO.png">
+
+<ul class="navbarlinks">
+
+    <input type="checkbox" id="checkbox_toggle" />
+    <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+<div class="menu">
+
+    <li><a href="">Memes</a></li>
+    <li><a href="">Gallery</a></li>
+    <li><a href="">About</a></li>
+    
+</div>
+</ul>
+</div>
 
 
+
+
+<div class="searchbox">
+<input class="searchtxt" type="text" placeholder="Search">
+</div>
+
+<section class="main-gallery"></section>
+
+
+    <section class="main-editor" style="display: none">
         <div class="canvas-box">
-
-            <canvas id="my-canvas" width="400" height="400"></canvas>
+            <canvas id="my-canvas" width="400" height="400" onclick="handleCanvasClick(event)"></canvas>
         </div>
+
         <input type="text" name="txt-mem" placeholder="Insert Text here!" onchange="handleTextInput(this.value)">
         <input type="color" id="fontColor" value="#FFFFFF" onchange="changeFontColor(this.value)">
         <button onclick="addLine()">Add Line</button>
@@ -26,9 +52,9 @@
         <button onclick="changeFontSize(5)">Bigger Font</button>
         <button onclick="changeFontSize(-5)">Smaller Font</button>
         <a href="#" download="memegen.jpg" id="download-link" onclick="downloadCanvas(this)">Download your meme!</a>
-
-
     </section>
+
+
 
 
 

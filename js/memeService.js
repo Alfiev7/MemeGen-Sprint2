@@ -28,7 +28,7 @@ function setImg(imgId) {
 }
 
 function addLine() {
-    const newLine = { text: '', size: 40, color: 'white', x: 200, y: gCanvas.height / 2 };
+    const newLine = { text: 'New Text', size: 40, color: 'white', x: 200, y: gCanvas.height / 2 };
     gMeme.lines.push(newLine);
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
 }

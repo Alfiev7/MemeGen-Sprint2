@@ -11,12 +11,19 @@ function renderGallery(imgs) {
 
 
 function onImgSelected(imgId) {
-    const imgs = getTestImgs(); 
+    const imgs = getTestImgs();
     const img = imgs.find(img => img.id === imgId);
     if (img) {
         gMeme.selectedImgId = imgId;
         gMeme.selectedImgUrl = img.url;
         renderMeme(gMeme);
+
+
+        document.querySelector('.main-gallery').style.display = 'none';
+        document.querySelector('.main-editor').style.display = 'block';
+        document.querySelector('.searchbox').style.display = 'none';
     }
 }
+
+        
 

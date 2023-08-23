@@ -1,0 +1,50 @@
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #fff;
+    color: #989898;
+    box-shadow: 0px 1px 0px #dbdbdb;
+    width: 100%;
+}
+    
+
+.logo{
+    height: 2rem;
+    width: 9.5rem;
+}
+
+.menu{
+    display: flex;
+    gap: 3.125rem;
+}
+
+a:visited { 
+    text-decoration: none; 
+    color: #989898;
+}
+
+a:hover{
+    color: #ff9826;
+}
+
+li{
+    list-style: none;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+
+input[type=checkbox] {
+    display: none;
+  }
+
+  .hamburger {
+    display: none;
+    font-size: 24px;
+    user-select: none;
+  }
