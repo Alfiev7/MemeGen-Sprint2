@@ -1,10 +1,11 @@
 var gCanvas = document.querySelector('#my-canvas');
 var gCtx = gCanvas.getContext('2d');
 
+
 const DEFAULT_FONT_SIZE = 40;
 let currentFontSize = DEFAULT_FONT_SIZE;
 
-function renderMeme(meme) {
+function renderMeme(meme, includeHighlight = true) {
     let img = new Image();
     img.src = meme.selectedImgUrl;
     img.onload = () => {
@@ -12,8 +13,10 @@ function renderMeme(meme) {
         meme.lines.forEach(line => {
             drawText(line);
         });
-        highlightSelectedLine();
+        if (includeHighlight) {
+            highlightSelectedLine();
     };
+}
 }
 
 
@@ -52,11 +55,45 @@ function handleTextInput(txt) {
 }
 
 
-function downloadCanvas(elLink) {
-    const data = gCanvas.toDataURL('image/jpeg');
-    elLink.href = data;
-    elLink.download = 'memegen.jpg';
+let isDownloading = false;
+
+function downloadCanvas(event, elLink) {
+
+    if (isDownloading) return;  
+
+    isDownloading = true;
+    renderMeme(getMeme(), false);
+    const userConfirmed = confirm('Download?');
+    if (userConfirmed) {
+
+        setTimeout(() => {
+            const data = gCanvas.toDataURL('image/jpeg');
+            elLink.href = data;
+            elLink.download = 'memegen.jpg';
+            elLink.click();
+            
+            
+            renderMeme(getMeme(), true);
+            
+            isDownloading = false;  
+
+        },200); 
+
+    } else {
+        isDownloading = false;  
+    }
 }
+
+
+
+
+
+        
+
+
+
+
+
 
 function changeFontColor(color) {
     setLineColor(color);
