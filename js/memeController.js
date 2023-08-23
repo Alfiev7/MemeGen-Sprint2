@@ -207,12 +207,16 @@ gCanvas.addEventListener('touchend', handleCanvasTouchEnd);
 gCanvas.addEventListener('mousedown', handleCanvasMouseDown);
 
 function handleCanvasTouchStart(event) {
+
+    
     const rect = gCanvas.getBoundingClientRect();
     const touch = event.touches[0];
-
-    const touchX = touch.clientX - rect.left;
-    const touchY = touch.clientY - rect.top;
-
+    
+    const scale = gCanvas.width / gCanvas.getBoundingClientRect().width;
+    const touchX = (touch.clientX - rect.left) * scale;
+    const touchY = (touch.clientY - rect.top) * scale;
+    console.log('Touch start triggered', touchX, touchY);
+    
     for (let i = 0; i < gMeme.lines.length; i++) {
         const line = gMeme.lines[i];
         if (touchX >= line.boundingBox.x &&
@@ -231,22 +235,26 @@ function handleCanvasTouchStart(event) {
 
 function handleCanvasTouchMove(event) {
     if (gDraggingLineIdx === null) return;
-
+    
     const rect = gCanvas.getBoundingClientRect();
     const touch = event.touches[0];
-
-    const moveX = touch.clientX - rect.left;
-    const moveY = touch.clientY - rect.top;
-
+    
+    const scale = gCanvas.width / gCanvas.getBoundingClientRect().width;
+    const moveX = (touch.clientX - rect.left) * scale;
+    const moveY = (touch.clientY - rect.top) * scale;
+    
+    console.log('Touch move triggered', moveX, moveY);
     const line = gMeme.lines[gDraggingLineIdx];
     line.x = moveX;
     line.y = moveY;
 
     renderMeme(getMeme());
-    event.preventDefault();  
+    event.preventDefault();
 }
 
+
 function handleCanvasTouchEnd(event) {
+    console.log('Touch end triggered'); 
     const line = gMeme.lines[gDraggingLineIdx];
     if (line && line.prevAlign) {
         line.align = line.prevAlign;
@@ -255,3 +263,5 @@ function handleCanvasTouchEnd(event) {
 
     gDraggingLineIdx = null;
 }
+
+

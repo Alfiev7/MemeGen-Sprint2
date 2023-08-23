@@ -32,6 +32,10 @@
     font-size: 0.875rem;
 }
 
+#my-canvas {
+    touch-action: none;
+}
+
 .editcontainer{
     background-color: #F8F8F8;
 
