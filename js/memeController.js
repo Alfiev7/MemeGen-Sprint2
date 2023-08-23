@@ -65,11 +65,11 @@ function downloadCanvas(event, elLink) {
     renderMeme(getMeme(), false);
 
 
+    elLink.click();
         setTimeout(() => {
             const data = gCanvas.toDataURL('image/jpeg');
             elLink.href = data;
             elLink.download = 'memegen.jpg';
-            elLink.click();
             
             
             renderMeme(getMeme(), true);
