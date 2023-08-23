@@ -47,5 +47,11 @@
     canvas{
         width: 330px;
     }
+    .downloadbtn {
         
+        width: 335px; 
+        height: 42px; 
+        position: static; 
+        margin: 0 auto;  
+    }
 }

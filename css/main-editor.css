@@ -5,7 +5,7 @@
     gap: 1rem;
     padding-left: 1.87rem;
     box-sizing: border-box;
-    height: 100vh;
+    height: 90vh;
     background-color: #fff;
 }
     
@@ -38,8 +38,9 @@
 }
 
 .editcontainer button img{
-    height: 18px;
+    height: 15px;
     width: 11px;
+    cursor: pointer;
 }
 
 .editcontainer button{
@@ -47,23 +48,59 @@
     background-color: #fff;
 }
 
-#fontColor + img{
-    height: 18px;
-    width: 11px;
+#fontColor{
+    margin-inline-start: 20px;
+    height: 30px;
+    width: 30px;
+    border: 1px solid #F8F8F8;
+    background-color: #fff;
+    cursor: pointer;
 }
 
 .buttoninputbox {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); 
+    grid-template-columns: repeat(5, 1fr); 
     grid-template-rows: auto auto; 
+    border-radius: 25px;
     border: 1px solid #F8F8F8;
     max-width: 30.37rem;
     background-color: #fff;
+    overflow: hidden;
+    margin-left: 1.875rem;
+    
      
 }
 
 .buttoninputbox input[type="text"] {
     border: 1px solid #F8F8F8;
     padding: 1.65rem;
-    grid-column: 1 / span 4; 
+    grid-column: 1 / span 5; 
+    outline: none;
+    
+}
+
+.editcontainer h1{
+margin: 1.875rem;
+color: #727272;
+font-size: 1.5rem;
+}
+
+
+.downloadbtn a{
+color: white;
+
+}
+
+.downloadbtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+    height: 54px;
+    background-color: #FF9826;
+    border: 1px solid black;
+    border-radius: 30px;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
 }

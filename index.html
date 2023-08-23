@@ -46,16 +46,22 @@
         </div>
 <div class="editcontainer">
     
-    <button onclick="onSwitchLineClicked()"><img src="icons/up-and-down-opposite-double-arrows-side-by-side.png"></button>
-    
+    <h1>Edit Text Lines</h1>
     <div class="buttoninputbox">
         <input type="color" id="fontColor" value="#FFFFFF" onchange="changeFontColor(this.value)">
         <button onclick="changeFontSize(5)"><img src="icons/increase font - icon.png"></button>
         <button onclick="changeFontSize(-5)"><img src="icons/decrease font - icon.png"></button>
+        <button onclick="onSwitchLineClicked()"><img src="icons/up-and-down-opposite-double-arrows-side-by-side.png"></button>
         <button onclick="addLine()"><img src="icons/add.png"></button>
         <input type="text" name="txt-mem" placeholder="Insert Text here!" onchange="handleTextInput(this.value)">
     </div>
-    <a href="#" download="memegen.jpg" id="download-link" onclick="downloadCanvas(this)">Download your meme!</a>
+    
+
+    <div class="downloadbtn">
+        <a href="#" download="memegen.jpg" id="download-link" onclick="downloadCanvas(this)">SHARE</a>
+    </div>
+
+        
     
 </div>
     </section>
