@@ -63,8 +63,7 @@ function downloadCanvas(event, elLink) {
 
     isDownloading = true;
     renderMeme(getMeme(), false);
-    const userConfirmed = confirm('Download?');
-    if (userConfirmed) {
+
 
         setTimeout(() => {
             const data = gCanvas.toDataURL('image/jpeg');
@@ -78,11 +77,9 @@ function downloadCanvas(event, elLink) {
             isDownloading = false;  
 
         },200); 
-
-    } else {
-        isDownloading = false;  
     }
-}
+
+
 
 
 
