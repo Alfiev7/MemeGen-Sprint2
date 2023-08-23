@@ -10,11 +10,15 @@
     <section class="main-gallery"></section>
 
     <section class="main-editor">
+        
+        
         <div class="canvas-box">
-
+            
             <canvas id="my-canvas" width="400" height="400"></canvas>
         </div>
-            <input type="text" name="txt-mem" placeholder="Insert Text here!" onchange="handleTextInput(this.value)">
+        <input type="text" name="txt-mem" placeholder="Insert Text here!" onchange="handleTextInput(this.value)">
+        <a href="#" download="memegen.jpg" id="download-link" onclick="downloadCanvas(this)">Download your meme!</a>
+
 
     </section>
 

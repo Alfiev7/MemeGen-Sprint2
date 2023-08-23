@@ -11,7 +11,7 @@ function renderGallery(imgs) {
 
 
 function onImgSelected(imgId) {
-    const imgs = getTestImgs(); // or replace this with the correct global function or variable
+    const imgs = getTestImgs(); 
     const img = imgs.find(img => img.id === imgId);
     if (img) {
         gMeme.selectedImgId = imgId;
