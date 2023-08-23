@@ -41,17 +41,23 @@
 
     <section class="main-editor" style="display: none">
         <div class="canvas-box">
+            <button class="backtogallery">< Back to Gallery</button>
             <canvas id="my-canvas" width="400" height="400" onclick="handleCanvasClick(event)"></canvas>
         </div>
-
-        <input type="text" name="txt-mem" placeholder="Insert Text here!" onchange="handleTextInput(this.value)">
+<div class="editcontainer">
+    
+    <button onclick="onSwitchLineClicked()"><img src="icons/up-and-down-opposite-double-arrows-side-by-side.png"></button>
+    
+    <div class="buttoninputbox">
         <input type="color" id="fontColor" value="#FFFFFF" onchange="changeFontColor(this.value)">
-        <button onclick="addLine()">Add Line</button>
-        <button onclick="onSwitchLineClicked()">Switch Line</button>
-
-        <button onclick="changeFontSize(5)">Bigger Font</button>
-        <button onclick="changeFontSize(-5)">Smaller Font</button>
-        <a href="#" download="memegen.jpg" id="download-link" onclick="downloadCanvas(this)">Download your meme!</a>
+        <button onclick="changeFontSize(5)"><img src="icons/increase font - icon.png"></button>
+        <button onclick="changeFontSize(-5)"><img src="icons/decrease font - icon.png"></button>
+        <button onclick="addLine()"><img src="icons/add.png"></button>
+        <input type="text" name="txt-mem" placeholder="Insert Text here!" onchange="handleTextInput(this.value)">
+    </div>
+    <a href="#" download="memegen.jpg" id="download-link" onclick="downloadCanvas(this)">Download your meme!</a>
+    
+</div>
     </section>
 
 
