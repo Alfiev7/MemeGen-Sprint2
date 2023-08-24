@@ -420,15 +420,15 @@ function handleStickerRelease(event) {
 
 function generateRandomMeme() {
     const meme = getMeme(); 
-    const images = ["imgs/2.jpg", "imgs/003.jpg", "imgs/004.jpg",];
-    const defaultText = "TEXT";
+    const images = ["imgs/2.jpg", "imgs/003.jpg", "imgs/004.jpg", "imgs/5.jpg", "imgs/005.jpg","imgs/006.jpg", "imgs/8.jpg", "imgs/9.jpg", "imgs/12.jpg", "imgs/19.jpg", "imgs/img2.jpg"];
+   
     
     
     const randomImageIndex = Math.floor(Math.random() * images.length);
     meme.selectedImgUrl = images[randomImageIndex];
     
     
-    meme.lines[0].text = defaultText;
+  
     
     renderMeme(meme);
     document.querySelector('.main-gallery').style.display = 'none';

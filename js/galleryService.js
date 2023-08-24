@@ -10,7 +10,6 @@ function getTestImgs() {
         {id: 'img8', url: 'imgs/12.jpg'},
         {id: 'img9', url: 'imgs/19.jpg'},
         {id: 'img10', url: 'imgs/Ancient-Aliens.jpg'},
-        {id: 'img11', url: 'imgs/drevil.jpg'},
         {id: 'img12', url: 'imgs/img2.jpg'},
         {id: 'img13', url: 'imgs/img4.jpg'},
         {id: 'img14', url: 'imgs/img5.jpg'},
@@ -19,6 +18,7 @@ function getTestImgs() {
         {id: 'img17', url: 'imgs/img12.jpg'},
         {id: 'img18', url: 'imgs/leo.jpg'}
     ];
+        
 }
 
 function getRandomInt(min, max) {
