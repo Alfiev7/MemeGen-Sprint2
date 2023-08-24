@@ -2,13 +2,17 @@ var gCanvas = document.querySelector('#my-canvas');
 var gCtx = gCanvas.getContext('2d');
 let gDraggingLineIdx = null;
 let stickers = [];
+let isDownloading = false;
+let gDraggingSticker = null;
 let gDraggingStickerIdx = null;
+let draggedStickerURL = null;
 
 
 const DEFAULT_FONT_SIZE = 40;
 let currentFontSize = DEFAULT_FONT_SIZE;
 
 function renderMeme(meme, includeHighlight = true) {
+
     let img = new Image();
     img.src = meme.selectedImgUrl;
     img.onload = () => {
@@ -53,7 +57,6 @@ function handleTextInput(txt) {
     renderMeme(getMeme());
 }
 
-let isDownloading = false;
 
 function downloadCanvas(event, elLink) {
     if (isDownloading) return;
@@ -202,6 +205,19 @@ function handleCanvasMove(event) {
     line.x = moveX;
     line.y = moveY;
 
+    if (draggedStickerURL !== null) {
+        const rect = gCanvas.getBoundingClientRect();
+        const scaleX = gCanvas.width / rect.width;
+        const scaleY = gCanvas.height / rect.height;
+        const moveX = event.offsetX * scaleX;
+        const moveY = event.offsetY * scaleY;
+
+        renderMeme(getMeme(), false);  
+        const img = new Image();
+        img.src = draggedStickerURL;
+        gCtx.drawImage(img, moveX, moveY, 50, 50);  
+    }
+
     renderMeme(getMeme());
 }
 
@@ -224,16 +240,13 @@ gCanvas.addEventListener('touchend', handleCanvasTouchEnd);
 gCanvas.addEventListener('mousedown', handleCanvasMouseDown);
 
 function handleCanvasTouchStart(event) {
-
-    
     const rect = gCanvas.getBoundingClientRect();
     const touch = event.touches[0];
     
     const scale = gCanvas.width / gCanvas.getBoundingClientRect().width;
     const touchX = (touch.clientX - rect.left) * scale;
     const touchY = (touch.clientY - rect.top) * scale;
-    console.log('Touch start triggered', touchX, touchY);
-    
+
     for (let i = 0; i < gMeme.lines.length; i++) {
         const line = gMeme.lines[i];
         if (touchX >= line.boundingBox.x &&
@@ -255,6 +268,8 @@ function handleCanvasTouchStart(event) {
             touchY >= sticker.y && touchY <= sticker.y + 50) {
 
             gDraggingStickerIdx = i;
+            document.addEventListener('touchmove', handleCanvasTouchMove);
+            document.addEventListener('touchend', handleCanvasTouchEnd);
             break;
         }
     }
@@ -262,19 +277,18 @@ function handleCanvasTouchStart(event) {
 
 
 function handleCanvasTouchMove(event) {
-    if (gDraggingLineIdx === null) return;
-    
     const rect = gCanvas.getBoundingClientRect();
     const touch = event.touches[0];
     
     const scale = gCanvas.width / gCanvas.getBoundingClientRect().width;
     const moveX = (touch.clientX - rect.left) * scale;
     const moveY = (touch.clientY - rect.top) * scale;
-    
-    console.log('Touch move triggered', moveX, moveY);
-    const line = gMeme.lines[gDraggingLineIdx];
-    line.x = moveX;
-    line.y = moveY;
+
+    if (gDraggingLineIdx !== null) {
+        const line = gMeme.lines[gDraggingLineIdx];
+        line.x = moveX;
+        line.y = moveY;
+    }
 
     if (gDraggingStickerIdx !== null) {
         const sticker = stickers[gDraggingStickerIdx];
@@ -283,17 +297,25 @@ function handleCanvasTouchMove(event) {
     }
 
     renderMeme(getMeme());
-    event.preventDefault();
+    // event.preventDefault();
 }
 
 
 function handleCanvasTouchEnd(event) {
-    console.log('Touch end triggered'); 
-    const line = gMeme.lines[gDraggingLineIdx];
-    if (line && line.prevAlign) {
-        line.align = line.prevAlign;
-        delete line.prevAlign;
+    if (gDraggingLineIdx !== null) {
+        const line = gMeme.lines[gDraggingLineIdx];
+        if (line && line.prevAlign) {
+            line.align = line.prevAlign;
+            delete line.prevAlign;
+        }
     }
+
+
+    
+
+    document.removeEventListener('touchmove', handleCanvasTouchMove);
+    document.removeEventListener('touchend', handleCanvasTouchEnd);
+
     gDraggingStickerIdx = null;
     gDraggingLineIdx = null;
 }
@@ -303,7 +325,19 @@ function initializeStickers() {
     const stickers = document.querySelectorAll('.sticker');
     stickers.forEach(sticker => {
         sticker.addEventListener('dragstart', handleStickerDragStart);
+        sticker.addEventListener('touchstart', handleStickerTouchStart);
     });
+}
+
+function handleStickerTouchStart(e) {
+    draggedStickerURL = e.target.src;
+    const rect = gCanvas.getBoundingClientRect();
+
+
+    const x = gCanvas.width / 2;
+    const y = gCanvas.height / 2;
+
+    drawStickerOnCanvas(draggedStickerURL, x, y);
 }
 
 function handleStickerDragStart(e) {
@@ -327,6 +361,7 @@ function handleCanvasDrop(e) {
     if (stickerURL) {
         drawStickerOnCanvas(stickerURL, e.clientX, e.clientY);
     }
+    renderMeme(getMeme());
 }
 
 function drawStickerOnCanvas(stickerURL, clientX, clientY) {
@@ -381,3 +416,6 @@ function handleStickerRelease(event) {
     document.removeEventListener('mouseup', handleStickerRelease);
     gDraggingStickerIdx = null;
 }
+
+
+ 
