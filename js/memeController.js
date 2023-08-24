@@ -1,6 +1,9 @@
 var gCanvas = document.querySelector('#my-canvas');
 var gCtx = gCanvas.getContext('2d');
 let gDraggingLineIdx = null;
+let stickers = [];
+let gDraggingStickerIdx = null;
+
 
 const DEFAULT_FONT_SIZE = 40;
 let currentFontSize = DEFAULT_FONT_SIZE;
@@ -13,6 +16,7 @@ function renderMeme(meme, includeHighlight = true) {
         meme.lines.forEach(line => {
             drawText(line);
         });
+        drawAllStickers();
         if (includeHighlight) {
             highlightSelectedLine();
         }
@@ -145,6 +149,19 @@ function handleCanvasMouseDown(event) {
             break;
         }
     }
+
+    for (let i = 0; i < stickers.length; i++) {
+        const sticker = stickers[i];
+        if (clickX >= sticker.x && clickX <= sticker.x + 50 &&
+            clickY >= sticker.y && clickY <= sticker.y + 50) {
+
+            gDraggingStickerIdx = i;
+
+            document.addEventListener('mousemove', handleStickerMove);
+            document.addEventListener('mouseup', handleStickerRelease);
+            break;
+}
+    }
 }
 
 
@@ -231,7 +248,18 @@ function handleCanvasTouchStart(event) {
             break;
         }
     }
+
+    for (let i = 0; i < stickers.length; i++) {
+        const sticker = stickers[i];
+        if (touchX >= sticker.x && touchX <= sticker.x + 50 &&
+            touchY >= sticker.y && touchY <= sticker.y + 50) {
+
+            gDraggingStickerIdx = i;
+            break;
+        }
+    }
 }
+
 
 function handleCanvasTouchMove(event) {
     if (gDraggingLineIdx === null) return;
@@ -248,6 +276,12 @@ function handleCanvasTouchMove(event) {
     line.x = moveX;
     line.y = moveY;
 
+    if (gDraggingStickerIdx !== null) {
+        const sticker = stickers[gDraggingStickerIdx];
+        sticker.x = moveX;
+        sticker.y = moveY;
+    }
+
     renderMeme(getMeme());
     event.preventDefault();
 }
@@ -260,8 +294,90 @@ function handleCanvasTouchEnd(event) {
         line.align = line.prevAlign;
         delete line.prevAlign;
     }
-
+    gDraggingStickerIdx = null;
     gDraggingLineIdx = null;
 }
 
 
+function initializeStickers() {
+    const stickers = document.querySelectorAll('.sticker');
+    stickers.forEach(sticker => {
+        sticker.addEventListener('dragstart', handleStickerDragStart);
+    });
+}
+
+function handleStickerDragStart(e) {
+    e.dataTransfer.setData('stickerURL', e.target.src);
+}
+
+function initializeCanvasDragDrop() {
+    gCanvas.addEventListener('drop', handleCanvasDrop);
+    gCanvas.addEventListener('dragover', handleCanvasDragOver);
+}
+
+function handleCanvasDragOver(e) {
+    e.preventDefault(); 
+}
+
+function handleCanvasDrop(e) {
+    e.preventDefault();
+
+    const stickerURL = e.dataTransfer.getData('stickerURL');
+
+    if (stickerURL) {
+        drawStickerOnCanvas(stickerURL, e.clientX, e.clientY);
+    }
+}
+
+function drawStickerOnCanvas(stickerURL, clientX, clientY) {
+    const img = new Image();
+    img.src = stickerURL;
+
+    img.onload = function() {
+        const rect = gCanvas.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+
+        gCtx.drawImage(img, x, y, 50, 50); 
+        stickers.push({img: img, x: x, y: y});
+    };
+}
+
+
+function initialize() {
+    initializeStickers();
+    initializeCanvasDragDrop();
+}
+
+
+initialize();
+
+function drawAllStickers() {
+    stickers.forEach(sticker => {
+        gCtx.drawImage(sticker.img, sticker.x, sticker.y, 50, 50); 
+    });
+}
+
+
+function handleStickerMove(event) {
+    if (gDraggingStickerIdx === null) return;
+
+    const rect = gCanvas.getBoundingClientRect();
+    const scaleX = gCanvas.width / rect.width;
+    const scaleY = gCanvas.height / rect.height;
+
+    const moveX = event.offsetX * scaleX;
+    const moveY = event.offsetY * scaleY;
+
+    const sticker = stickers[gDraggingStickerIdx];
+    sticker.x = moveX;
+    sticker.y = moveY;
+
+    renderMeme(getMeme());
+}
+
+function handleStickerRelease(event) {
+    document.removeEventListener('mousemove', handleStickerMove);
+    document.removeEventListener('mouseup', handleStickerRelease);
+    gDraggingStickerIdx = null;
+}
