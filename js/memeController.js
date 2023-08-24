@@ -418,5 +418,21 @@ function handleStickerRelease(event) {
     gDraggingStickerIdx = null;
 }
 
+function generateRandomMeme() {
+    const meme = getMeme(); 
+    const images = ["imgs/2.jpg", "imgs/003.jpg", "imgs/004.jpg",];
+    const defaultText = "TEXT";
+    
+    
+    const randomImageIndex = Math.floor(Math.random() * images.length);
+    meme.selectedImgUrl = images[randomImageIndex];
+    
+    
+    meme.lines[0].text = defaultText;
+    
+    renderMeme(meme);
+    document.querySelector('.main-gallery').style.display = 'none';
+    document.querySelector('.main-editor').style.display = 'grid';
+    document.querySelector('.searchbox').style.display = 'none';
+}
 
- 

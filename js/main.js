@@ -1,3 +1,5 @@
+let ctx;
+
 function onInit() {
     const testImgs = getTestImgs();
     renderGallery(testImgs);

@@ -58,3 +58,8 @@ function initializeImageUpload() {
     document.querySelector('.searchbox').style.display = 'none';
 }      
 
+
+
+
+
+
