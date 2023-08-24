@@ -35,7 +35,12 @@
     <div class="searchbox">
         <input class="searchtxt" type="text" placeholder="Search">
     </div>
-    <input type="file" id="imageUpload" onclick="initializeImageUpload()" accept="image/*">
+
+<section class="midbar">
+
+    <input type="file" id="imageUpload" style="display:none;" onclick="initializeImageUpload()" accept="image/*">
+    <label for="imageUpload" class="custom-file-upload-button">Upload File</label>
+</section>
 
     <section class="main-gallery"></section>
 
