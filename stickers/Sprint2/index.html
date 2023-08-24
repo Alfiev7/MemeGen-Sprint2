@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Generator</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="onInit()">
+
+    <div class="nav">
+
+        <img class="logo" src="imgs/LOGO.png">
+
+        <ul class="navbarlinks">
+
+            <input type="checkbox" id="checkbox_toggle" />
+            <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+            <div class="menu">
+
+                <li><a href="">Memes</a></li>
+                <li><a href="">Gallery</a></li>
+                <li><a href="">About</a></li>
+
+            </div>
+        </ul>
+    </div>
+
+
+
+
+    <div class="searchbox">
+        <input class="searchtxt" type="text" placeholder="Search">
+    </div>
+
+    <section class="main-gallery"></section>
+
+
+    <section class="main-editor" style="display: none">
+        <div class="canvas-box">
+            <button class="backtogallery">
+                < Back to Gallery</button>
+                    <canvas id="my-canvas" width="400" height="400" "></canvas>
+        </div>
+        <div class="editcontainer">
+
+            <h1>Edit Text Lines</h1>
+            <div class="buttoninputbox">
+                
+                <select id="font-family-select" onchange="changeFontFamily(this.value)">
+                    <option value="Impact">Impact</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                </select>
+                
+                <input type="color" id="fontColor" value="#FFFFFF" onchange="changeFontColor(this.value)">
+                <button onclick="changeFontSize(5)"><img src="icons/increase font - icon.png"></button>
+                <button onclick="changeFontSize(-5)"><img src="icons/decrease font - icon.png"></button>
+                <button onclick="onSwitchLineClicked()"><img
+                        src="icons/up-and-down-opposite-double-arrows-side-by-side.png"></button>
+                <button onclick="alignText('left')"><img src="icons/align-to-left.png"></button>
+                <button onclick="alignText('center')"><img src="icons/center-text-alignment.png"></button>
+                <button onclick="alignText('right')"><img src="icons/align-to-right.png"></button>
+                <button onclick="addLine()"><img src="icons/add.png"></button>
+                <button onclick="onDeleteLineClicked()"><img src="icons/trash.png"></button>
+                <input type="text" name="txt-mem" placeholder="Insert Text here!"
+                    onchange="handleTextInput(this.value)">
+            </div>
+
+            <div class="sticker-container">
+                <img src="stickers/one.png" class="sticker" draggable="true">
+                <img src="stickers/two.png" class="sticker" draggable="true">
+                <img src="stickers/poop.png" class="sticker" draggable="true">
+                <img src="stickers/four.png" class="sticker" draggable="true">
+                <img src="stickers/five.png" class="sticker" draggable="true">
+                <img src="stickers/six.png" class="sticker" draggable="true">
+            </div>
+
+
+
+
+
+            <div class="downloadbtn">
+                <a download="memegen.jpg" id="downloadLink" onclick="downloadCanvas(event, this)">SHARE</a>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="js/galleryService.js"></script>
+    <script src="js/galleryController.js"></script>
+    <script src="js/memeService.js"></script>
+    <script src="js/memeController.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
