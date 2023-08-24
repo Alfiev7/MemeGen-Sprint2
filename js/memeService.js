@@ -3,8 +3,8 @@ var gMeme = {
     selectedImgId: null,
     selectedImgUrl: null,
     lines: [
-        { text: 'Text 1', size: 40, font: 'Impact', color: 'white', x: 0, y: 100, align: 'left' },  
-        { text: 'Text 2', size: 40, font: 'Impact',color: 'white', x: 0, y: 300, align: 'left' }
+        { text: 'Text 1', size: 45, font: 'Impact', color: 'white', x: 0, y: 100, align: 'left' },  
+        { text: 'Text 2', size: 45, font: 'Impact',color: 'white', x: 0, y: 300, align: 'left' }
     ],
     selectedLineIdx: 0
 };
@@ -57,3 +57,5 @@ function deleteLine() {
  gMeme.selectedLineIdx--;
     
 }
+
+

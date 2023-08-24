@@ -382,6 +382,7 @@ function drawStickerOnCanvas(stickerURL, clientX, clientY) {
 function initialize() {
     initializeStickers();
     initializeCanvasDragDrop();
+
 }
 
 

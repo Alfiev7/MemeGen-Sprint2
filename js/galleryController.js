@@ -25,5 +25,36 @@ function onImgSelected(imgId) {
     }
 }
 
-        
+function initializeImageUpload() {
+
+    const imageUploadInput = document.getElementById('imageUpload');
+
+
+    imageUploadInput.addEventListener('change', function() {
+        const file = this.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+
+            const meme = getMeme();
+            
+
+            console.log("Data URL:", event.target.result);
+            console.log("Meme object before update:", meme);
+
+            meme.selectedImgUrl = event.target.result;
+
+
+            console.log("Meme object after update:", meme);
+
+            renderMeme(meme);
+        };
+
+        reader.readAsDataURL(file);
+    });
+
+    document.querySelector('.main-gallery').style.display = 'none';
+    document.querySelector('.main-editor').style.display = 'grid';
+    document.querySelector('.searchbox').style.display = 'none';
+}      
 
