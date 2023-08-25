@@ -23,3 +23,21 @@ canvas.addEventListener('click', function(e) {
     var y = e.clientY - rect.top;  
     console.log('Canvas X:', x, 'Canvas Y:', y);
 });
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const menuToggle = document.getElementById('checkbox_toggle');
+    const memesButton = document.getElementById('memesButton');
+  
+    memesButton.addEventListener('click', function() {
+      
+      if (menuToggle.checked) {
+        menuToggle.checked = false;
+      }
+    });
+  });
+  
