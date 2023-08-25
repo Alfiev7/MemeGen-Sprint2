@@ -21,13 +21,14 @@
             <label for="checkbox_toggle" class="hamburger">&#9776;</label>
             <div class="menu">
 
-                <li><a href="">Memes</a></li>
+                <li><a href="javascript:void(0);" onclick="showSavedMemes()">Memes</a></li>
                 <li><a href="">Gallery</a></li>
                 <li><a href="">About</a></li>
-
             </div>
         </ul>
     </div>
+
+
 
 
 
@@ -36,12 +37,12 @@
         <input class="searchtxt" type="text" placeholder="Search">
     </div>
 
-<section class="midbar">
+    <section class="midbar">
 
-    <input type="file" id="imageUpload" style="display:none;" onclick="initializeImageUpload()" accept="image/*">
-    <label for="imageUpload" class="custom-file-upload-button">Upload File</label>
-    <button class="flexible" onclick="generateRandomMeme()">I'M FLEXIBLE</button>
-</section>
+        <input type="file" id="imageUpload" style="display:none;" onclick="initializeImageUpload()" accept="image/*">
+        <label for="imageUpload" class="custom-file-upload-button">Upload File</label>
+        <button class="flexible" onclick="generateRandomMeme()">I'M FLEXIBLE</button>
+    </section>
 
     <section class="main-gallery"></section>
 
@@ -95,16 +96,26 @@
                             <p>Choose font style, font size</p>
                             <p>Drag and drop to move your text</p>
                             <p>Drag and drop some stickers</p>
+                            <p>Click Save Meme to save your memes!</p>
+                            <p>The memes button will have all your saved memes</p>
                             <p>Click Share to download!</p>
                         </div>
 
+<section class="btnstuff">
 
+    <div class="savebtn">
+        <button id="save-meme" onclick="saveMemeToLocalStorage()">Save Meme</button>
+    </div>
+    
+    <div class="downloadbtn">
+        <a download="memegen.jpg" id="downloadLink"
+        onclick="downloadCanvas(event, this)">Download</a>
+    </div>
+</div>
+</section>
+    </section>
 
-
-                        <div class="downloadbtn">
-                            <a download="memegen.jpg" id="downloadLink" onclick="downloadCanvas(event, this)">SHARE</a>
-                        </div>
-        </div>
+    <section class="meme-gallery" style="display: none">
     </section>
 
 

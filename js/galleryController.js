@@ -22,6 +22,7 @@ function onImgSelected(imgId) {
         document.querySelector('.main-gallery').style.display = 'none';
         document.querySelector('.main-editor').style.display = 'grid';
         document.querySelector('.searchbox').style.display = 'none';
+        document.querySelector('.meme-gallery').style.display = 'none';
     }
 }
 
@@ -56,6 +57,7 @@ function initializeImageUpload() {
     document.querySelector('.main-gallery').style.display = 'none';
     document.querySelector('.main-editor').style.display = 'grid';
     document.querySelector('.searchbox').style.display = 'none';
+    document.querySelector('.meme-gallery').style.display = 'none';
 }      
 
 

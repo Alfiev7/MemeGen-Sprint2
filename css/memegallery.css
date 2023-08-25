@@ -1,0 +1,19 @@
+.meme-gallery {
+    margin-top: 15px;
+    column-count: 5;
+    column-gap: 1rem;
+    padding: 0 1.87rem;
+    box-sizing: border-box;
+}
+
+.img-memes {
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    margin-bottom: 1rem; 
+    break-inside: avoid; 
+}
+
+img{
+    border-radius: 10px;
+}

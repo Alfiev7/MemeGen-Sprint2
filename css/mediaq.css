@@ -11,16 +11,23 @@
         padding: 16px 0;
     }
 
+    .menu li a {
+        color: #fff;
+    }
+
     .menu li:first-child {
         margin-top: 13.375rem;
+
     }
 
     .menu li:nth-child(2) {
         margin-top: 8.625rem;
+
     }
 
     .menu li:nth-child(3) {
         margin-top: 8.625rem;
+
     }
 
     input[type=checkbox]:checked~.menu {
@@ -35,41 +42,65 @@
         column-count: 2;
     }
 
+    .meme-gallery {
+        column-count: 2 !important;
+    }
+
     .main-editor {
         background-color: #F8F8F8;
         grid-template-columns: 1fr;
         padding: 2px;
     }
 
-    .editcontainer{
+
+
+    .editcontainer {
         background-color: #fff;
     }
-    canvas{
+
+    canvas {
         width: 330px;
     }
+
     .downloadbtn {
-        
-        width: 335px; 
-        height: 42px; 
-        position: static; 
-        margin: 0 auto;  
+
+        width: 150px;
+        height: 42px;
+        position: static;
+        margin: 0 auto;
     }
 
-    .buttoninputbox{
+    .buttoninputbox {
         margin-left: 1px;
     }
 
-    .sticker-container{
+    .sticker-container {
         margin-left: 1px;
     }
 
-    .instructionscontainer{
+    .instructionscontainer {
         margin-left: 1px;
     }
 
-    .backtogallery{
+    .backtogallery {
         display: none;
     }
 
+    .savebtn{
+        width: 150px;
+        height: 42px;
+        position: static;
 
+        margin-bottom: 10px;
+        
+    }
+
+    .editcontainer h1{
+margin-top: 15px;
+    }
+
+    .btnstuff{
+
+        margin-left: 30px;
+    }
 }
