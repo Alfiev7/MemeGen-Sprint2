@@ -120,6 +120,12 @@ margin-inline-start: 100px;
     h5{
         display: none;
     }
+
+    input[type="text"],
+textarea,
+select {
+    font-size: 16px;
+}
 }
 
 
