@@ -108,6 +108,7 @@ font-size: 1.5rem;
 
 .downloadbtn a{
 color: white;
+cursor: pointer;
 
 }
 
@@ -120,9 +121,13 @@ color: white;
     background-color: #FF9826;
     border: 1px solid black;
     border-radius: 30px;
-    
+    cursor: pointer;
 
     border: none;
+}
+
+.downloadbtn:hover{
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.8); 
 }
 
 
@@ -199,13 +204,19 @@ margin-left: 0.8rem;
     border: 1px solid black;
     border-radius: 30px;
     border: none;
-
-
+    cursor: pointer;
 }
+
+.savebtn:hover{
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.8); 
+}
+
+
     
 #save-meme{
     background-color: #FF9826;
     color: white;
+    cursor: pointer;
 }
 
 .btnstuff{

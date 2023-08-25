@@ -21,6 +21,10 @@
     
 }
 
+.custom-file-upload-button:hover{
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.8); 
+}
+
 .flexible{
     background-color: #5a50e7;
     color: white;
@@ -30,4 +34,9 @@
     border: none;
     margin-left: 5px;
     height: 40px;
+}
+
+
+.flexible:hover{
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.8); 
 }
