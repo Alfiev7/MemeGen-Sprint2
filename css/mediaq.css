@@ -1,4 +1,4 @@
-@media (max-width: 700px) {
+@media (max-width: 511px) {
     .menu {
         display: none;
         position: fixed;
@@ -18,6 +18,12 @@
         color: #fff;
     }
 
+
+    .searchtxt{
+
+        margin-left: 0.87rem;
+        margin-right: 1.87rem;
+    }
     .menu li:first-child {
         margin-top: 13.375rem;
 
@@ -43,6 +49,8 @@
 
     .main-gallery {
         column-count: 2;
+        margin-left: 0;
+        margin-right: 0
     }
 
     .meme-gallery {
@@ -113,3 +121,6 @@ margin-inline-start: 100px;
         display: none;
     }
 }
+
+
+
