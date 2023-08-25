@@ -53,6 +53,7 @@
         background-color: #F8F8F8;
         grid-template-columns: 1fr;
         padding: 2px;
+        margin-inline-start: 0px;
     }
 
 
