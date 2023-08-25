@@ -31,6 +31,8 @@
     background-color: #fff;
     border: none;
     font-size: 0.875rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #727272;
 }
 
 #my-canvas {
@@ -134,10 +136,10 @@ margin-left: 0.8rem;
     margin-left: 1.875rem;
     align-items: center;
     margin-bottom: 30px;
+}
 
 
     
-}
 
 .sticker{
     margin-inline-start: 30px;
@@ -201,5 +203,17 @@ margin-left: 0.8rem;
     margin-left: 1.875rem;
 display: flex;
 justify-content: space-between;
+
+}
+
+h5{
+    position: absolute;  
+    top: 5rem;           
+    left: 3;             
+    width: 20rem;
+    height: 1rem;
+    font-size: 1rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #727272;
 
 }
