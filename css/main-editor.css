@@ -236,5 +236,25 @@ h5{
     font-size: 1rem;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #727272;
+}
+
+.socialmedia{
+    display: flex;
+justify-content: space-between;
+width: 20vw;
+margin-left: 5rem;
+margin-bottom: 10px;
+}
+
+
+
+.fa-square-facebook,
+.fa-square-whatsapp,
+.fa-square-twitter,
+.fa-square-reddit,
+.fa-square-pinterest {
+    font-size: 3rem;
+ margin-left: 0.2rem;   
 
 }
+
