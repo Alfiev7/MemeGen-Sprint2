@@ -1,13 +1,18 @@
 
 
-function renderGallery(imgs) {
+function renderGallery(imgs, filter = '') {
     const galleryEl = document.querySelector('.main-gallery');
-    const strHTML = imgs.map(img => `
+    
+    const filteredImgs = imgs.filter(img => {
+        return img.keywords.some(keyword => keyword.includes(filter));
+    });
+    
+    const strHTML = filteredImgs.map(img => `
         <img class="img-gallery" id="${img.id}" src="${img.url}" onclick="onImgSelected('${img.id}')">
     `).join('');
+    
     galleryEl.innerHTML = strHTML;
 }
-
 
 
 function onImgSelected(imgId) {
@@ -61,7 +66,16 @@ function initializeImageUpload() {
 }      
 
 
+// function renderGallery(memes) {
+//     const galleryDiv = document.querySelector('.main-gallery');
+//     galleryDiv.innerHTML = '';
 
+//     memes.forEach(meme => {
+//         const img = document.createElement('img');
+//         img.src = meme.url;
+//         galleryDiv.appendChild(img);
+//     })
+// }
 
 
 
