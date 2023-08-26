@@ -9,6 +9,7 @@ function renderGallery(imgs, filter = '') {
     
     const strHTML = filteredImgs.map(img => `
         <img class="img-gallery" id="${img.id}" src="${img.url}" onclick="onImgSelected('${img.id}')">
+ 
     `).join('');
     
     galleryEl.innerHTML = strHTML;
@@ -64,18 +65,5 @@ function initializeImageUpload() {
     document.querySelector('.searchbox').style.display = 'none';
     document.querySelector('.meme-gallery').style.display = 'none';
 }      
-
-
-// function renderGallery(memes) {
-//     const galleryDiv = document.querySelector('.main-gallery');
-//     galleryDiv.innerHTML = '';
-
-//     memes.forEach(meme => {
-//         const img = document.createElement('img');
-//         img.src = meme.url;
-//         galleryDiv.appendChild(img);
-//     })
-// }
-
 
 
